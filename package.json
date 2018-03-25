@@ -18,7 +18,7 @@
   "homepage": "https://github.com/sh-chbb/chbb-import#readme",
   "dependencies": {
     "csv-reader": "^1.0.1",
-    "mysql2": "^1.5.3",
-    "pinyin": "^2.8.3"
+    "pinyin": "^2.8.3",
+    "promise-mysql": "^3.2.1"
   }
 }

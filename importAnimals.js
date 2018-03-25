@@ -4,9 +4,11 @@ const path = require('path')
 const fs = require('fs')
 const CsvReader = require('csv-reader')
 const Promise = require('bluebird')
+const mysql = require('promise-mysql')
+const pinyin = require("pinyin")
 
 const animalFile = path.join(__dirname, '/content/animal/animals.csv')
-const imgPath = path.join(__dirname, '/content/animal/img2/')
+const imgPath = path.join(__dirname, '/content/animal/img/')
 const vocalPath = path.join(__dirname, '/content/animal/vocal')
 
 const inputStream = fs.createReadStream(animalFile, 'utf8')
@@ -38,16 +40,47 @@ const processImport = () => {
 
       return new Promise(resolve => {
         // console.log(path.join(imgPath, `${animal[0]}.jpg`))
-        let animalName = animals[0]
-        let animalDesc = animals[4]
+        let animalName = animal[0]
+        let animalDesc = animal[4]
+
         let animalImage = path.join(imgPath, `${animalName}.jpg`)
         let animalVocal = path.join(vocalPath, `${animalName}.mp3`)
-        
-        
-        // console.log(`Animal Name: ${animal[0]}, desc: ${animal[4]}`)
-        resolve()
+
+        let connection
+        mysql.createConnection({
+          host: 'localhost',
+          user: 'root',
+          password: 'root',
+          database: 'chbb_chatbot_dev'
+        }).then((conn) => {
+
+          connection = conn
+          let query = `insert into animal values (null, "${animalName}", "${animalDesc}");`
+          return connection.query(query)
+        }).then((result) => {
+
+          let animalId = result.insertId
+          let query = `insert into animalImage values (null, ${animalId}, "/images/animals/${animalName}.jpg");`
+          connection.query(query)
+          return animalId
+        }).then((animalId) => {
+          
+          if (fs.existsSync(animalVocal)) {
+
+            let query = `insert into animalAudio values (null, ${animalId}, "/images/animals/${animalName}.mp3");`
+            return connection.query(query)
+          }
+          return
+        }).then(() => {
+
+          resolve()
+        }).catch((err) => {
+          console.log(err)
+        })
       })
     })
+
+    return 
   })
 }
 
