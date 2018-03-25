@@ -1,0 +1,24 @@
+{
+  "name": "chbb-import",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sh-chbb/chbb-import.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sh-chbb/chbb-import/issues"
+  },
+  "homepage": "https://github.com/sh-chbb/chbb-import#readme",
+  "dependencies": {
+    "csv-reader": "^1.0.1",
+    "mysql2": "^1.5.3",
+    "pinyin": "^2.8.3"
+  }
+}
