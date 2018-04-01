@@ -1,0 +1,10 @@
+{
+  "baiduConfig": {
+    "APP_NAME": "聪慧宝贝明星",
+    "APP_ID": "10913684",
+    "APP_KEY": "rZnaQdu14NrVmXyNrzUznqpz",
+    "APP_SECRET": "0L4FVZUu0POGDgX5euBxA08M7lBtGIg5",
+    "CELEBRITY_MALE_TEST_GROUPID": "celebrity_male_test",
+    "CELEBRITY_FEMALE_TEST_GROUPID": "celebrity_female_test"
+  }
+}
