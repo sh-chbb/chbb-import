@@ -48,9 +48,9 @@ const processImport = () => {
 
         let connection
         mysql.createConnection({
-          host: 'localhost',
-          user: 'root',
-          password: 'root',
+          host: '106.14.7.201',
+          user: 'wtmsdev',
+          password: '2018GoGo!',
           database: 'chbb_chatbot_dev'
         }).then((conn) => {
 
